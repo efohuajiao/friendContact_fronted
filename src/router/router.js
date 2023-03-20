@@ -1,0 +1,54 @@
+//这里编写路由,并向外暴露
+//使用路由懒加载，将不同的留有对应的组件分割成不同的代码块，然后当路由被访问的时候菜加载对应组件
+export default [
+    //主页
+    {
+        path:'/',
+        component:()=>import("@/pages/indexPage.vue")
+    },
+    //队伍页
+    {
+        path:'/team',
+        component:()=>import("@/pages/teamPage.vue")
+    },
+    //用户信息页
+    {
+        path:"/userInfo",
+        component:()=>import("@/pages/userInfoPage.vue"),
+    },
+    //根据标签搜索用户页
+    {
+        path:"/search",
+        component:()=>import("@/pages/searchPage.vue")
+    },
+    //修改信息页
+    {
+        name:"xiugai",
+        path:'/userEdit',
+        component:()=>import("@/pages/userEditPage.vue")
+    },
+    //搜索用户标签结果页
+    {
+        path:'/userSearch',
+        component:()=>import("@/pages/searchResultPage.vue")
+    },
+    //个人页
+    {
+        path:"/user",
+        component:()=>import("@/pages/userPage.vue")
+    },
+    //用户注册页
+    {
+        path:'/register',
+        component:()=>import("@/pages/userRegister.vue")
+    },
+    //用户登录页
+    {
+        path:"/login",
+        component:()=>import("@/pages/userLogin.vue")
+    },
+    {
+        path:"/editTags",
+        component:()=>import("@/pages/editUserTags.vue")
+    }
+]
