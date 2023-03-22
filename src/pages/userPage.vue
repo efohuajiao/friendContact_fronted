@@ -65,7 +65,7 @@ const toUserInfo = () => {
 };
 //退出登录
 const logOut = ()=>{
-  localStorage.setItem("TOKEN","");
+  localStorage.removeItem("TOKEN")
   showSuccessToast({message:"退出成功",duration:500})
   router.replace("/login")
 }

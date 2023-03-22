@@ -24,10 +24,10 @@
     description="搜索结果为空"
   />
   <van-overlay :show="show" @click="show = false">
-    <div class="wrapper" @click.stop>
-      <div class="block" />
-    </div>
-  </van-overlay>
+  <div class="wrapper" @click.stop>
+    <div class="block" />
+  </div>
+</van-overlay>
 </template>
 
 <script setup>
