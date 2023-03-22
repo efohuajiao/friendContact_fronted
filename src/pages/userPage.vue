@@ -15,7 +15,7 @@
   </van-card>
   <van-space direction="vertical" fill :size="20" style="margin-top: 20px">
     <van-cell title="编号" :value="userList.planetCode" icon="manager-o" />
-    <van-cell title="我创建的队伍" is-link icon="cluster-o" />
+    <van-cell title="我创建的队伍" is-link icon="cluster-o" to="/currentHumanTeam"/>
     <van-cell title="我加入的队伍" is-link icon="friends-o" />
     <van-cell title="注册时间" :value="userList.createTime" icon="underway-o" />
     <van-cell title="退出登录" icon="close" @click="logOut"/>
