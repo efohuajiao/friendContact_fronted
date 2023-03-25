@@ -9,7 +9,15 @@ export default [
     //队伍页
     {
         path:'/team',
-        component:()=>import("@/pages/teamPage.vue")
+        component:()=>import("@/pages/teamPage.vue"),
+        meta:{
+            notSearch:true
+        }
+    },
+    //队伍信息页
+    {
+        path:"/teamInfo",
+        component:()=>import("@/pages/teamInfo.vue")
     },
     //用户信息页
     {
@@ -40,15 +48,37 @@ export default [
     //用户注册页
     {
         path:'/register',
-        component:()=>import("@/pages/userRegister.vue")
+        component:()=>import("@/pages/userRegister.vue"),
+        meta:{
+            keepAlive:true
+        }
     },
     //用户登录页
     {
         path:"/login",
-        component:()=>import("@/pages/userLogin.vue")
+        component:()=>import("@/pages/userLogin.vue"),
+        meta:{
+            keepAlive:true
+        }
     },
+    //修改用户标签页
     {
         path:"/editTags",
         component:()=>import("@/pages/editUserTags.vue")
+    },
+    //创建队伍页
+    {
+        path:"/createTeam",
+        component:()=>import("@/pages/createTeamPage.vue")
+    },
+    //用户创建的队伍页
+    {
+        path:"/currentHumanTeam",
+        component:()=>import("@/pages/currentHumanTeam")
+    },
+    //用户加入的队伍
+    {
+        path:"/teamofuserjoin",
+        component:()=>import("@/pages/teamOfUserJoin")
     }
 ]

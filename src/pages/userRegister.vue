@@ -3,7 +3,7 @@
     name="friends-o"
     :size="90"
     color="#3b71b7"
-    style="margin-left: 36vw"
+    style="margin-left: 36vw; margin-top: 10vw"
   />
   <h2 style="font-weight: 700; text-align: center">“寻找志同道合的朋友”</h2>
   <van-form @submit="onSubmit">
@@ -39,6 +39,8 @@
       </van-button>
     </div>
   </van-form>
+  <router-link to="/login" id="toLogin">已有账号？登录</router-link>
+
 </template>
 
 <script setup>
@@ -83,7 +85,9 @@ const onSubmit = async () => {
 </script>
 
 <style scoped>
-p {
-  font-weight: 400;
+
+#toLogin {
+  position: absolute;
+  right: 5vw;
 }
 </style>

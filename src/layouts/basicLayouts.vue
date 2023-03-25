@@ -5,9 +5,9 @@
     left-arrow
     @click-left="onClickLeft"
     @click-right="onClickRight"
-    v-if="route.path != '/login'  "
+    v-if="!route.meta.keepAlive  "
     >
-    <template #right>
+    <template #right v-if="!route.meta.notSearch">
       <van-icon name="search" size="18" />
     </template>
   </van-nav-bar>
@@ -18,7 +18,7 @@
   
 
   <!-- 底部导航 -->
-  <van-tabbar route id="bottom">
+  <van-tabbar route id="bottom" style="z-index:0" v-if="!route.meta.keepAlive  ">
     <van-tabbar-item to="/" icon="home-o" name="index">主页</van-tabbar-item>
     <van-tabbar-item to="/team" icon="search" name="team">队伍</van-tabbar-item>
     <van-tabbar-item to="/user" icon="friends-o" name="user">个人</van-tabbar-item>

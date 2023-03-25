@@ -56,7 +56,6 @@ const onSubmit = async (values) => {
 //   console.log("submit", values);
 //   console.log(fileList.value[0].content)
   let result = await createTeam(fileList.value[0].content,values)
-  // console.log(result)
   //如果创建成功就回到之前的页面
   if(result.code == 200){
     showSuccessToast({message:"创建成功",duration:500})

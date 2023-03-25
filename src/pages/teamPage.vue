@@ -1,4 +1,5 @@
 <template>
+  <van-search v-model="value" placeholder="请输入想查找的队伍" @search="onSearch"/>
   <van-tabs >
     <van-tab>
       <template #title> <van-icon name="smile-o" />公开 </template>
@@ -9,7 +10,7 @@
         :thumb="teamList.teamUrl"
       >
         <template #bottom>
-            <span>队伍人数：1/{{ teamList.maxNum }}</span><br>
+            <span>队伍人数：{{teamList.currentNum}} / {{ teamList.maxNum }}</span><br>
             <span>创建时间：{{ teamList.createTime }}</span>
         </template>
         <template #tags>
@@ -21,12 +22,23 @@
           </van-space>
         </template>
         <template #footer>
-          <van-button size="mini" @click="show = true">查看队伍</van-button>
+          <van-button size="mini" @click="toJoinTeam(teamList.id)" v-if="!teamList.isExist" >加入队伍</van-button>
+          <van-button size="mini" @click="searchTeamInfo(teamList.id)">查看队伍</van-button>
         </template>
       </van-card>
+      <van-empty
+        v-if="openTeamInfo.length < 1"
+        image="search"
+        description="搜索结果为空"
+      />
     </van-tab>
     <van-tab>
       <template #title> <van-icon name="lock" />私有 </template>
+      <van-empty
+        v-if="privateTeamInfo.length < 1"
+        image="search"
+        description="搜索结果为空"
+      />
       <van-card
         v-for="teamList in privateTeamInfo"
         :desc="teamList.description"
@@ -34,7 +46,7 @@
         :thumb="teamList.teamUrl"
       >
         <template #bottom>
-            <span>队伍人数：1/{{ teamList.maxNum }}</span><br>
+            <span>队伍人数：{{teamList.currentNum}}/{{ teamList.maxNum }}</span><br>
             <span>创建时间：{{ teamList.createTime }}</span>
         </template>
         <template #tags>
@@ -46,7 +58,8 @@
           </van-space>
         </template>
         <template #footer>
-          <van-button size="mini" @click="show = true">查看队伍</van-button>
+          <van-button size="mini" @click="" v-if="!teamList.isExist">加入队伍</van-button>
+          <van-button size="mini" @click="searchTeamInfo(teamList.id)">查看队伍</van-button>
         </template>
       </van-card>
     </van-tab>
@@ -56,15 +69,21 @@
 </template>
 
 <script setup>
-import { getAllTeam } from "@/api";
-import { onMounted, ref } from "vue";
+import { getAllTeam ,joinTeam } from "@/api";
+import { showSuccessToast } from "vant";
+import { onMounted,onBeforeMount, ref } from "vue";
 import { useRouter } from "vue-router";
 
 let teamInfo = []
-const openTeamInfo = ref([]);
-const privateTeamInfo = ref([])
-onMounted(async () => {
-  let result = await getAllTeam();
+const openTeamInfo = ref([]);//公开队伍
+const privateTeamInfo = ref([])//加密队伍
+const value = ref('');//搜索的值
+
+
+//搜索队伍以及展示全部队伍都要用到同一个方法，将它封装起来
+const searchTeam = async (value = '') => {
+  let result = await getAllTeam(value);
+  // console.log(result)
   teamInfo = result.data;
   //修改队伍的状态
   teamInfo.forEach((teamList) => {
@@ -80,13 +99,40 @@ onMounted(async () => {
   privateTeamInfo.value = teamInfo.filter((teamList)=>{
     return teamList.status == "私有"
   })
-  
+}
+//请求获取所有队伍信息
+onMounted(()=>{
+  searchTeam();
 });
-// console.log(teamInfo);
+//搜索队伍
+const onSearch = (val)=>{
+  searchTeam(val);
+} 
 //跳转到创建队伍页
 const router = useRouter()
 const toCreateTeam = ()=>{
   router.push("/createTeam")
+}
+
+//加入队伍
+const toJoinTeam = async (teamId)=>{
+  //将队伍id传给后端
+  let result = await joinTeam(teamId)
+  if(result.code == 200){
+    showSuccessToast({message:"请求成功",duration:500});
+    searchTeam();
+  }
+  // console.log(result)
+}
+
+//查看队伍
+const searchTeamInfo = (id)=>{
+  router.push({
+    path:"/teamInfo",
+    query:{
+      id
+    }
+  })
 }
 </script>
 
