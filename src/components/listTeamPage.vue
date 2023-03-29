@@ -30,23 +30,13 @@
   </template>
   <script setup>
   import { onMounted, ref ,defineProps} from "vue";
+  
   defineProps({
     req : Function
   })
   console.log(req)
   let teamInfo = ref([])
-//   onMounted(async ()=>{
-//     let result = await teamOfUserJoin();
-//     // console.log(result)
-//     teamInfo.value = result.data;
-//     if (teamInfo.value) {
-//       teamInfo.value.forEach((teamList) => {
-//         teamList.status == 1
-//           ? (teamList.status = "公开")
-//           : (teamList.status = "私有");
-//       });
-//     } 
-//   })
+
   </script>
   <style>
   </style>

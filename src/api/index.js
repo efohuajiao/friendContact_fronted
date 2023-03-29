@@ -10,6 +10,12 @@ export const reqUserInfo = (id)=>{
     return requests({url:`/user/userInfo/${id}`,method:"get"});
 }
 
+//获取用户信息
+export const reqLoginUserInfo = ()=>{
+    return requests({ url: "/userInfo", method: "get" })
+}
+
+
 //修改用户的tag标签
 export const updateUserTags = (tag,planetCode)=>{
     return requests({url:`/userEditTags/${tag}/${planetCode}`,method:"get"});

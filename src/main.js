@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 //按需引入vant组件
-import { NavBar,Icon,Tabbar, Search, Divider, TreeSelect, Tag, Space,CellGroup, Card, Form, Uploader, Toast, Overlay, Tabs, BackTop, Popover } from 'vant';
+import { NavBar,Icon,Tabbar, Search, Divider, TreeSelect, Tag, Space,CellGroup, Card, Form, Uploader, Toast, Overlay, Tabs, BackTop, Popover, Skeleton, SkeletonTitle, SkeletonImage, SkeletonAvatar, SkeletonParagraph } from 'vant';
 import 'vant/es/toast/style';
 //引入pinia
 import { createPinia} from 'pinia';
@@ -28,6 +28,11 @@ app.use(Overlay)
 app.use(Tabs)
 app.use(BackTop);
 app.use(Popover);
+app.use(Skeleton);
+app.use(SkeletonTitle);
+app.use(SkeletonImage);
+app.use(SkeletonAvatar);
+app.use(SkeletonParagraph);
 //使用pinia
 const pinia = createPinia()
 app.use(pinia)

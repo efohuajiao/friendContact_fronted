@@ -23,37 +23,18 @@
 </template>
 
 <script setup>
-import requests from "@/api/request";
-import { showSuccessToast } from "vant";
+ import { showSuccessToast } from "vant";
 import { onBeforeMount, onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useUserInfo } from "@/store/userInfo.js";
 let userList = ref({});
-
-// {
-//   id: 1,
-//   username: "花椒",
-//   userAccount: "eatHuaJiao",
-//   avatarUrl:
-//     "https://img2.baidu.com/it/u=3202947311,1179654885&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500",
-//   gender: "男",
-//   profile: "一个热爱前端的男大学生",
-//   phone: "13412134141",
-//   email: "1290129@qq.com",
-//   planeCode: "1234",
-//   tags: ["emo中", "男", "大一", "未婚"],
-//   createTime: "2023年3月1日",
-// }
-
+const store = useUserInfo();
 //获取当前登录用户的信息
 // const token = localStorage.getItem("TOKEN")
 onBeforeMount(async () => {
-  let result = await requests({ url: "/userInfo", method: "get" });
-  //将获取的值传给userList
-  // console.log(result); 
-  userList.value = result.data;
-  let user = userList.value;
-  user.createTime = user.createTime.slice(0, 10);
-  user.tags = JSON.parse(user.tags);
+  await store.searchUserInfo();
+   userList.value = store.user;
+  // console.log(store.user)
 });
 
 //跳转到用户信息页
@@ -65,7 +46,7 @@ const toUserInfo = () => {
 };
 //退出登录
 const logOut = ()=>{
-  localStorage.removeItem("TOKEN")
+  sessionStorage.removeItem("TOKEN")
   showSuccessToast({message:"退出成功",duration:500})
   router.replace("/login")
 }

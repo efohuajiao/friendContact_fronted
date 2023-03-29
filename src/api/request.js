@@ -8,8 +8,8 @@ const requests = axios.create({
 requests.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     //将存储在localStorage中的信息传给服务器
-    if(localStorage.getItem("TOKEN")){
-      config.headers.Authorization = localStorage.getItem("TOKEN")
+    if(sessionStorage.getItem("TOKEN")){
+      config.headers.Authorization = sessionStorage.getItem("TOKEN")
     }
     return config;
   }, function (error) {

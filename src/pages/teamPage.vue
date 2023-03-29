@@ -3,8 +3,8 @@
   <van-tabs >
     <van-tab>
       <template #title> <van-icon name="smile-o" />公开 </template>
+      <van-skeleton title avatar :row="3" :loading="loading" v-for="teamList in openTeamInfo">
       <van-card
-        v-for="teamList in openTeamInfo"
         :desc="teamList.description"
         :title="teamList.teamname"
         :thumb="teamList.teamUrl"
@@ -26,6 +26,8 @@
           <van-button size="mini" @click="searchTeamInfo(teamList.id)">查看队伍</van-button>
         </template>
       </van-card>
+      
+      </van-skeleton>
       <van-empty
         v-if="openTeamInfo.length < 1"
         image="search"
@@ -39,8 +41,8 @@
         image="search"
         description="搜索结果为空"
       />
+      <van-skeleton title avatar :row="3" :loading="loading"  v-for="teamList in privateTeamInfo">
       <van-card
-        v-for="teamList in privateTeamInfo"
         :desc="teamList.description"
         :title="teamList.teamname"
         :thumb="teamList.teamUrl"
@@ -62,6 +64,7 @@
           <van-button size="mini" @click="searchTeamInfo(teamList.id)">查看队伍</van-button>
         </template>
       </van-card>
+      </van-skeleton>
     </van-tab>
   </van-tabs>
   <van-button icon="plus" round type="primary" id="create" @click="toCreateTeam"/>
@@ -75,14 +78,16 @@ import { onMounted,onBeforeMount, ref } from "vue";
 import { useRouter } from "vue-router";
 
 let teamInfo = []
-const openTeamInfo = ref([]);//公开队伍
-const privateTeamInfo = ref([])//加密队伍
+const openTeamInfo = ref([{},{},{},{}]);//公开队伍
+const privateTeamInfo = ref([{},{},{},{}])//加密队伍
 const value = ref('');//搜索的值
 
 
+const loading = ref(true);
 //搜索队伍以及展示全部队伍都要用到同一个方法，将它封装起来
 const searchTeam = async (value = '') => {
   let result = await getAllTeam(value);
+  loading.value = false;
   // console.log(result)
   teamInfo = result.data;
   //修改队伍的状态
@@ -100,6 +105,7 @@ const searchTeam = async (value = '') => {
     return teamList.status == "私有"
   })
 }
+
 //请求获取所有队伍信息
 onMounted(()=>{
   searchTeam();

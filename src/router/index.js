@@ -5,27 +5,27 @@ const router = VueRouter.createRouter({
     history: VueRouter.createWebHashHistory(),
     routes
 })
-
 // 设置路由守卫
-// router.beforeEach((to,from,next)=>{
+router.beforeEach((to,from,next)=>{
     
-//     // console.log(to,from)
-//     let token = localStorage.getItem("TOKEN")
-//     if(token){
-//        if(to.path == '/login' || to.path == '/register'){
-//         router.push("/")
-//        } else{
-//         next()
-//        }
-//     }else{
-//         next()
-//     }
-//     // //如果用户登录，不允许再跳转到登录页和注册页
-//     // if(!token && (to.path != '/login' || to.path != '/register')){
-//     //     router.push("login")
-//     // }
-//     //如果没登陆，则跳转到登录页
+    // console.log(to,from)
+    let token = localStorage.getItem("TOKEN")
+    if(token){
+       if(to.path == '/login' || to.path == '/register'){
+        next({path:"/index"})
+       } else{
+        next()
+       }
+    }else {
+        next()
+    }
+    
+    // //如果用户登录，不允许再跳转到登录页和注册页
+    // if(!token && (to.path != '/login' || to.path != '/register')){
+    //     router.push("login")
+    // }
+    //如果没登陆，则跳转到登录页
 
-// })
+})
 
 export default router;

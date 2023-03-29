@@ -1,6 +1,6 @@
 <template>
     <van-card
-      v-for="userList in userListData"
+      v-for="userList in userListInfo"
       :desc="userList.profile"
       :title="userList.username"
       :thumb="userList.avatarUrl"
@@ -18,7 +18,7 @@
     </van-card>
     <!-- 搜索提示 -->
   <van-empty
-    v-if="!userListData || userListData.length < 1"
+    v-if="!userListInfo || userListInfo.length < 1"
     image="search"
     description="搜索结果为空"
   />
@@ -37,48 +37,15 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
-import { onMounted } from "vue";
-import { useRoute } from "vue-router";
-import requests from "@/api/request";
-import {reqUserInfo} from '@/api'
-import {useSearchTags} from '@/store/tags'
-// const user = {
-//     id:1,
-//     username:"花椒",
-//     userAccount:"eatHuaJiao",
-//     avatarUrl:"https://img2.baidu.com/it/u=3202947311,1179654885&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500",
-//     gender:"男",
-//     profile:"一个冷漠的男子,屹立武林独领风骚",
-//     phone:"13412134141",
-//     email:"1290129@qq.com",
-//     planeCode:'1234',
-//     tags:['emo中','男','大一','未婚'],
-//     createTime:new Date()   
-// }
-let userListData = ref([]);
-//使用route获取搜索页传递过来的query参数
-const route = useRoute();
 
-onMounted(async () => {
-  //发起请求获取对应tag的用户
-  // let result = await requests({ url: `/userList/${route.query.tag}` });
+import { ref, toRef } from 'vue';
 
-  await store.searchUserByTags(route.query.tag);
-  // console.log(store.userListdata)
-  const result =  store.userListdata;
-
-  // console.log(result)
-  let userInfo = result;
-  if (userInfo){
-    userInfo.forEach((user) => {
-      if (user.tags) {
-        user.tags = JSON.parse(user.tags);
-      }
-    });
-    userListData.value = userInfo;
-  }
-});
+const props = defineProps({
+  userListInfo:Array
+})
+const userListInfo = props.userListInfo
+// const userListInfo = toRef(userListInfo)
+// console.log(userListInfo)
 //遮罩层显示用户信息
 const show = ref(false);
 let userInfo = ref([])
@@ -91,8 +58,7 @@ const showUserInfo = async (userId)=>{
   // console.log(result)
 }
 
-
-const store = useSearchTags();
+// const store = useSearchTags();
 
 </script>
 

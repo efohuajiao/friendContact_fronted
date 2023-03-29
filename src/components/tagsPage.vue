@@ -64,14 +64,14 @@ const originTagList = [
     ]
   },
   {
-    text: "学习方向",
+    text: "游戏",
     children: [
-      { text: "java", id: "java" },
-      { text: "c", id: "c" },
-      { text: "c++", id: "c++" },
-      { text: "go", id: "go" },
-      { text: "node", id: "node" },
-      { text: "python", id: "python" },
+      { text: "王者荣耀", id: "王者荣耀" },
+      { text: "原神", id: "原神" },
+      { text: "刺激战场", id: "刺激战场" },
+      { text: "明日之后", id: "明日之后" },
+      { text: "qq飞车", id: "qq飞车" },
+      { text: "战双帕米什", id: "战双帕米什" },
     ],
   },
   {
@@ -91,7 +91,7 @@ const originTagList = [
       { text: "猛学中", id: "猛学中" },
       { text: "摆烂中", id: "摆烂中" },
       { text: "考研中", id: "考研中" },
-      { text: "求职中", id: "求职中" },
+      { text: "想恋爱", id: "想恋爱" },
     ],
   },
 ];

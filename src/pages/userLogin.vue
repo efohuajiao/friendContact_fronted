@@ -52,8 +52,8 @@ const onSubmit = async () => {
   // console.log(result);
   if (result.code == 200) {
     showSuccessToast({message:"登录成功",duration:500})
-    localStorage.setItem("TOKEN",result.token)
-    router.replace("/");
+    sessionStorage.setItem("TOKEN",result.token)
+    router.replace("/index");
   } else {
     showFailToast({message:`${result.message}`,duration:500});
   }
