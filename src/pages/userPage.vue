@@ -1,4 +1,5 @@
 <template>
+
   <van-card
     :desc="userList.profile"
     :title="userList.username"
@@ -23,7 +24,7 @@
 </template>
 
 <script setup>
- import { showSuccessToast } from "vant";
+ import { showSuccessToast,showConfirmDialog } from "vant";
 import { onBeforeMount, onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useUserInfo } from "@/store/userInfo.js";
@@ -45,10 +46,20 @@ const toUserInfo = () => {
   });
 };
 //退出登录
+
 const logOut = ()=>{
+  showConfirmDialog({
+  message:"您确认退出吗？",
+  width:"50vw",
+  
+}).then(()=>{
   sessionStorage.removeItem("TOKEN")
-  showSuccessToast({message:"退出成功",duration:500})
+  showSuccessToast({message:"退出成功",duration:1000})
   router.replace("/login")
+}).catch((error)=>{
+
+})
+
 }
 </script>
 

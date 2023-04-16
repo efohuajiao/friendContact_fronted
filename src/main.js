@@ -1,13 +1,17 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 //按需引入vant组件
-import { NavBar,Icon,Tabbar, Search, Divider, TreeSelect, Tag, Space,CellGroup, Card, Form, Uploader, Toast, Overlay, Tabs, BackTop, Popover, Skeleton, SkeletonTitle, SkeletonImage, SkeletonAvatar, SkeletonParagraph } from 'vant';
+import { NavBar,Icon,Tabbar, Search, Divider, TreeSelect, Tag, Space,CellGroup, Card, Form, Uploader, Toast, Overlay, Tabs, BackTop, Popover, Skeleton, SkeletonTitle, SkeletonImage, SkeletonAvatar, SkeletonParagraph, Dialog, PullRefresh, Loading } from 'vant';
 import 'vant/es/toast/style';
+import 'vant/es/dialog/style';
 //引入pinia
 import { createPinia} from 'pinia';
 //引入路由
 import router from './router'
 // import * as VueRouter from 'vue-router'
+//引入虚拟列表VueVirtualScroller
+import VueVirtualScroller from 'vue-virtual-scroller'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 const app = createApp(App);
 //使用组件
@@ -33,10 +37,16 @@ app.use(SkeletonTitle);
 app.use(SkeletonImage);
 app.use(SkeletonAvatar);
 app.use(SkeletonParagraph);
+app.use(Dialog);
+app.use(PullRefresh);
+app.use(BackTop);
+app.use(Loading)
 //使用pinia
 const pinia = createPinia()
 app.use(pinia)
 //使用路由
 app.use(router)
+//使用虚拟列表
+app.use(VueVirtualScroller)
 // createApp(App).mount('#app')
 app.mount("#app")

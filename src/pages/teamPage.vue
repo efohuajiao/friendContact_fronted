@@ -1,5 +1,5 @@
 <template>
-  <van-search v-model="value" placeholder="请输入想查找的队伍" @search="onSearch"/>
+  <van-search v-model="searchValue" placeholder="请输入想查找的队伍" @search="onSearch"/>
   <van-tabs >
     <van-tab>
       <template #title> <van-icon name="smile-o" />公开 </template>
@@ -74,13 +74,13 @@
 <script setup>
 import { getAllTeam ,joinTeam } from "@/api";
 import { showSuccessToast } from "vant";
-import { onMounted,onBeforeMount, ref } from "vue";
+import { onMounted,onBeforeMount, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
 let teamInfo = []
 const openTeamInfo = ref([{},{},{},{}]);//公开队伍
 const privateTeamInfo = ref([{},{},{},{}])//加密队伍
-const value = ref('');//搜索的值
+const searchValue = ref('');//搜索的值
 
 
 const loading = ref(true);
@@ -107,13 +107,29 @@ const searchTeam = async (value = '') => {
 }
 
 //请求获取所有队伍信息
+const deBounce = (fn)=>{
+    let timer = null;
+    return function(){
+      if(timer) return;
+      timer = setTimeout(()=>{
+        fn().apply(this,arguments);
+        clearTimeout(timer);
+      },1000)
+    }
+}
 onMounted(()=>{
   searchTeam();
 });
 //搜索队伍
-const onSearch = (val)=>{
-  searchTeam(val);
-} 
+const onSearch = ()=>{
+  searchTeam(searchValue.value)
+}
+watch(searchValue,(newvalue,oldvalue)=>{
+  setTimeout(()=>{
+    searchTeam(newvalue)
+  },500)
+    
+})
 //跳转到创建队伍页
 const router = useRouter()
 const toCreateTeam = ()=>{

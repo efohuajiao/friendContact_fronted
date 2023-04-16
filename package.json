@@ -15,7 +15,8 @@
     "pinia": "^2.0.33",
     "vant": "^4.0.11",
     "vue": "^3.2.13",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "vue-virtual-scroller": "^2.0.0-beta.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
