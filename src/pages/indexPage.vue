@@ -4,8 +4,7 @@
     :items="userInfo"
     :min-item-size="100"
     page-mode
-    :buffer="1000"
-    :prerender="1000"
+    :buffer="100"
   >
     <template v-slot="{ item, index, active }">
       <DynamicScrollerItem :item="item" :active="active" :data-index="index">
@@ -70,7 +69,6 @@ const showAllUser = async () => {
 };
 onMounted(() => {
   showAllUser();
-  loading.value = false;
 });
 </script>
 

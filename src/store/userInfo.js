@@ -1,10 +1,16 @@
 import { defineStore } from "pinia";
 import { reqLoginUserInfo } from "@/api";
+// interface user{
+
+// }
+// interface data {
+//     userInfo : user
+// }
 export const useUserInfo = defineStore("userInfo",{
     //状态
     state:()=> {
         return{
-            userInfo : []
+            userInfo : {}
         }
     },
     //计算

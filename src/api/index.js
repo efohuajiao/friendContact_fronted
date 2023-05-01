@@ -47,8 +47,8 @@ export const teamOfUserJoin = ()=>{
 }
 
 //加入队伍
-export const joinTeam = (teamId)=>{
-    return requests({url:`/team/joinTeam/${teamId}`,method:"get"});
+export const joinTeam = (teamId,teamPwd)=>{
+    return requests({url:`/team/joinTeam/${teamId}/${teamPwd}`,method:"get"});
 } 
 
 //查看队伍
