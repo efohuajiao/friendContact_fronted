@@ -22,6 +22,15 @@
             <van-stepper v-model="value" />
           </template>
         </van-field>
+        <van-field
+          v-model="password"
+          name="password"
+          type="password"
+          label="队伍密码"
+          placeholder="请输入队伍密码"
+          :rules="[{ required: true, message: '请填写队伍描述' }]"
+          v-if="checked=== '2'"
+        />
         <van-field name="status" label="队伍状态">
           <template #input>
             <van-radio-group v-model="checked" direction="horizontal">
@@ -30,6 +39,7 @@
             </van-radio-group>
           </template>
         </van-field>
+        
       </van-space>
     </van-cell-group>
     <div style="margin: 16px">
@@ -50,13 +60,13 @@ const teamname = ref(""); //队伍名
 const description = ref(""); //队伍描述
 const value = ref(1); //队伍人数
 const checked = ref("1"); //队伍状态
-
+const password = ref("")//队伍密码
 const router = useRouter()//获取路由router
 const onSubmit = async (values) => {
-//   console.log("submit", values);
 //   console.log(fileList.value[0].content)
   let result = await createTeam(fileList.value[0].content,values)
-  //如果创建成功就回到之前的页面
+  console.log(result);
+  // //如果创建成功就回到之前的页面
   if(result.code == 200){
     showSuccessToast({message:"创建成功",duration:500})
     router.back()

@@ -47,8 +47,6 @@
 </template>
 
 <script setup>
-import requests from "@/api/request";
-import { showSuccessToast } from "vant";
 import { onMounted, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { searchTeam } from "@/api";
