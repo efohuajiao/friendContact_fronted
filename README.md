@@ -1,67 +1,75 @@
+# 游戏伙伴匹配系统
 
-1、设计头部的标签，引入vant的NavBar导航栏
-设计底部TabBar,引入TabBar组件
-设计插槽，将index和team组件引入，使用v-if进行显示判断
+## 项目描述
 
-2、路由设计
-路由分为主页、队伍页和用户页
-引用路由时采用路由懒加载引用，优化性能
-注意点：app.use(router) 需放在app.mount(’#app’)前面 不然加载时router-view、router-link等未被渲染
+- 一个帮助游戏爱好者寻找游戏伙伴的移动端网站，包括用户登录注册、更新个人信息、按标签搜索用户、组队等功能。
 
-3、页面开发（路由页面）
-    (1)搜索页面searchPage.vue
-        分割线组件van-divider：已选标签、选择标签
-        标签组件van-tag
-        已选标签的关闭：
-            使用数组的filter过滤方法过滤掉点击的数据，即使选择的数据不等于数组中的数组即可，保留原有的数据
-        过滤搜索：
-            使用
-        执行搜索：
-            使用query传递已选中的标签到搜索结果页
-        将分类选择单独分离成一个组件，用以复用
-        并使用emit实现子传父，实现搜索用户、修改用户标签的功能
-    (2)用户信息页userPage.vue
-        多次使用vant-cell逐个编写用户数据
-        使用query传参，将需要修改的值传递给/user/edit路由进行修改
-            需要的值：title、value
-    (3)用户信息编辑页userEditPage.vue
-        使用useRoute()创建route对象，获取user页传递过来的query参数，展示到页面上
-    
-    (4)搜索结果页searchResultPage.vue
-        
-    (5)用户修改页
-    修改标签
-    (6)主页
-        用户页接口直接选择所有的用户返回给客户端
-        
-4、需要优化的事
-将用户密码使用bcryotjs进行加密后放到数据库
-使用pinia存储数据
-用户的信息并没有进行校验
-退出队伍、智能排序，路由导航
+## 技术选型
 
+### 前端
 
-5、问题
-    (1)解决只有登陆注册不需要token的问题
-        目前登录不需要token
-        想到的方法：更换登录和注册接口的前缀 已解决，后端.unless()正则加注册一个条件
-    (2)用户头像存储到服务器的问题
+1. 💚 Vue 3.0：使用最新版本的Vue进行开发。
+2. 📦WebPack：使用WebPack作为打包构建工具。
+3. 🧰 Vue-router：使用Vue-router进行路由管理。
+4. 🔒 Pinia：使用Pinia进行状态管理。
+5. 🎨 Less：使用Less作为CSS预处理器。
+6. 🎄Axios：使用Axios进行接口请求。
 
+### 后端
 
-6、后端
-目前有登录、注册、用户信息、根据tag标签查找用户接口、修改用户信息接口、修改标签接口
-登录接口有token，时效5小时
-目前需要开发用户修改信息接口 已解决
+1. 💚Node：使用Node进行后端开发。
+2. 📦Express：使用Express搭建服务端。
+3. 🎈MySql数据库：使用MySql作为数据存储。
+
+## 启动项目
+
+1. 拉代码
+
+`git pull https://github.com/efohuajiao/friendContact_fronted.git`
+
+2. 启动前端
+
+```
+cd friendContact_fronted
+npm run dev
+```
+
+3. 启动后端
+
+```
+cd server
+node index.js
+```
+
+## 部分页面展示
+<center>
+<img src="http://cdn.t-terminal.icu/image-20230820190829357.png" alt="image-20230820190829357" style="zoom:50%;" />
+<img src="http://cdn.t-terminal.icu/image-20230820190916181.png" alt="image-20230820190916181" style="zoom:50%;" />
 
 
-8、3.19需完成
-用户注册头像上传到数据库，修改头像、退出登录 
-    退出登录已解决
-    用户头像已解决
+<center>
+<img src="http://cdn.t-terminal.icu/image-20230820190931043.png" alt="image-20230820190931043" style="zoom:50%;" />
+<img src="http://cdn.t-terminal.icu/image-20230820191917375.png" alt="image-20230820191917375" style="zoom:50%;" />
 
 
-9、3.24完成
-创建队伍时将用户的id和队伍id添加到user_team表中
 
-10、最后优化
-加入私密队伍密码
+<center>
+<img src="http://cdn.t-terminal.icu/image-20230820190953087.png" alt="image-20230820190953087" style="zoom:50%;" />
+<img src="http://cdn.t-terminal.icu/image-20230820190942364.png" alt="image-20230820190942364" style="zoom:50%;" />
+
+
+<center>
+<img src="http://cdn.t-terminal.icu/image-20230820191017505.png" alt="image-20230820191017505" style="zoom:50%;" />
+<img src="http://cdn.t-terminal.icu/image-20230820191038634.png" alt="image-20230820191038634" style="zoom: 50%;" />
+
+
+<center>
+<img src="http://cdn.t-terminal.icu/image-20230820191049961.png" alt="image-20230820191049961" style="zoom:50%;" />
+<img src="http://cdn.t-terminal.icu/image-20230820191001808.png" alt="image-20230820191001808" style="zoom:50%;" />
+
+## 项目优化
+
+1. 使用**vue-virtual-scroller插件**实现虚拟列表，解决数据量过大造成的卡顿
+2. 采用**骨架屏、懒加载**替代数据渲染空白期，提高体验感
+3. 采用**Pinia**全局状态管理用户信息，减少网络请求带来的资源损耗
+
