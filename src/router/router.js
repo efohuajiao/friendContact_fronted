@@ -14,7 +14,8 @@ export default [
     {
         path:'/index',
         meta:{
-            title:"伙伴匹配"
+            title:"伙伴匹配",
+            isAuth:true
         },
         component:()=>import("@/pages/indexPage.vue")
     },
@@ -25,6 +26,18 @@ export default [
         meta:{
             notSearch:true,
             title:"找队伍",
+            isAuth:true
+
+        }
+    },
+    {
+        path:"/chat",
+        name:"Chat",
+        component: () => import("@/pages/chatRoom"),
+        meta:{
+            title:"聊天室",
+            isAuth:true
+
         }
     },
     //队伍信息页
@@ -32,6 +45,8 @@ export default [
         path:"/teamInfo",
         meta:{
             title:"队伍信息",
+            isAuth:true
+
         },
         component:()=>import("@/pages/teamInfo.vue")
     },
@@ -40,6 +55,8 @@ export default [
         path:"/userInfo",
         meta:{
             title:"当前信息",
+            isAuth:true
+
         },
         component:()=>import("@/pages/userInfoPage.vue"),
     },
@@ -48,6 +65,8 @@ export default [
         path:"/search",
         meta:{
             title:"搜索伙伴",
+            isAuth:true
+
         },
         component:()=>import("@/pages/searchPage.vue")
     },
@@ -57,6 +76,8 @@ export default [
         path:'/userEdit',
         meta:{
             title:"修改信息",
+            isAuth:true
+
         },
         component:()=>import("@/pages/userEditPage.vue")
     },
@@ -65,6 +86,8 @@ export default [
         path:'/userSearch',
         meta:{
             title:"用户列表",
+            isAuth:true
+
         },
         component:()=>import("@/pages/searchResultPage.vue")
     },
@@ -73,6 +96,8 @@ export default [
         path:"/user",
         meta:{
             title:"用户信息",
+            isAuth:true
+
         },
         component:()=>import("@/pages/userPage.vue")
     },
@@ -81,6 +106,8 @@ export default [
         path:'/register',
         meta:{
             title:"注册",
+            isAuth:true
+
         },
         component:()=>import("@/pages/userRegister.vue"),
         meta:{
@@ -93,6 +120,8 @@ export default [
         path:"/editTags",
         meta:{
             title:"更新标签",
+            isAuth:true
+
         },
         component:()=>import("@/pages/editUserTags.vue")
     },
@@ -101,6 +130,8 @@ export default [
         path:"/createTeam",
         meta:{
             title:"创建队伍",
+            isAuth:true
+
         },
         component:()=>import("@/pages/createTeamPage.vue")
     },
@@ -109,6 +140,8 @@ export default [
         path:"/currentHumanTeam",
         meta:{
             title:"我创建的队伍",
+            isAuth:true
+
         },
         component:()=>import("@/pages/currentHumanTeam")
     },
@@ -117,6 +150,8 @@ export default [
         path:"/teamofuserjoin",
         meta:{
             title:"我加入的队伍",
+            isAuth:true
+
         },
         component:()=>import("@/pages/teamOfUserJoin")
     },

@@ -11,14 +11,27 @@ router.beforeEach((to,from,next)=>{
     // console.log(to,from)
     let token = localStorage.getItem("TOKEN")
     if(token){
-       if(to.path == '/login' || to.path == '/register'){
-        next({path:"/index"})
-       } else{
-        next()
-       }
-    }else {
-        next()
+        if(to.path === '/login' || to.path === '/register'){
+            next('/index');
+        }else{
+            next();
+        }
+    }else{
+        if(to.path !== '/login' && to.path !== 'register'){
+            next('/login');
+        }else{
+            next();
+        }
     }
+    // if(token){
+    //    if(to.path == '/login' || to.path == '/register'){
+    //     next({path:"/index"})
+    //    } else{
+    //     next()
+    //    }
+    // }else {
+    //     next()
+    // }
     
     // //如果用户登录，不允许再跳转到登录页和注册页
     // if(!token && (to.path != '/login' || to.path != '/register')){

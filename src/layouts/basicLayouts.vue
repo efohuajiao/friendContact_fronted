@@ -1,4 +1,5 @@
 <template>
+<div>
   <!-- 头部导航 -->
   <van-nav-bar 
     :title="title"
@@ -20,8 +21,11 @@
   <van-tabbar route id="bottom" style="z-index:0" v-if="!route.meta.keepAlive  ">
     <van-tabbar-item to="/index" icon="home-o" name="index">主页</van-tabbar-item>
     <van-tabbar-item to="/team" icon="search" name="team">队伍</van-tabbar-item>
+    <!-- <van-tabbar-item to="/chat" icon="chat-o" name="chat">聊天室</van-tabbar-item> -->
     <van-tabbar-item to="/user" icon="friends-o" name="user">个人</van-tabbar-item>
 </van-tabbar>
+</div>
+  
 </template>
 
 <script setup>
