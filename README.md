@@ -42,34 +42,24 @@ node index.js
 ```
 
 ## 部分页面展示
-<center>
-<img src="http://cdn.t-terminal.icu/image-20230820190829357.png" alt="image-20230820190829357" style="zoom:50%;" />
-<img src="http://cdn.t-terminal.icu/image-20230820190916181.png" alt="image-20230820190916181" style="zoom:50%;" />
+![image-20230826193146026](http://cdn.t-terminal.icu/image-20230826193146026.png)
+
+![image-20230826195428608](http://cdn.t-terminal.icu/image-20230826195428608.png)
 
 
-<center>
-<img src="http://cdn.t-terminal.icu/image-20230820190931043.png" alt="image-20230820190931043" style="zoom:50%;" />
-<img src="http://cdn.t-terminal.icu/image-20230820191917375.png" alt="image-20230820191917375" style="zoom:50%;" />
+![image-20230826193224601](http://cdn.t-terminal.icu/image-20230826193224601.png)
 
 
+![image-20230826193246246](http://cdn.t-terminal.icu/image-20230826193246246.png)
 
-<center>
-<img src="http://cdn.t-terminal.icu/image-20230820190953087.png" alt="image-20230820190953087" style="zoom:50%;" />
-<img src="http://cdn.t-terminal.icu/image-20230820190942364.png" alt="image-20230820190942364" style="zoom:50%;" />
-
-
-<center>
-<img src="http://cdn.t-terminal.icu/image-20230820191017505.png" alt="image-20230820191017505" style="zoom:50%;" />
-<img src="http://cdn.t-terminal.icu/image-20230820191038634.png" alt="image-20230820191038634" style="zoom: 50%;" />
+![image-20230826193302795](http://cdn.t-terminal.icu/image-20230826193302795.png)
 
 
-<center>
-<img src="http://cdn.t-terminal.icu/image-20230820191049961.png" alt="image-20230820191049961" style="zoom:50%;" />
-<img src="http://cdn.t-terminal.icu/image-20230820191001808.png" alt="image-20230820191001808" style="zoom:50%;" />
-
-## 项目优化
+## 项目亮点
 
 1. 使用**vue-virtual-scroller插件**实现虚拟列表，解决数据量过大造成的卡顿
 2. 采用**骨架屏、懒加载**替代数据渲染空白期，提高体验感
 3. 采用**Pinia**全局状态管理用户信息，减少网络请求带来的资源损耗
+4. 对大容量图片进行分片上传，通过`Promise.all()`实现并发控制的上传，控制同时上传多个文件，限制并发数
 
+5. 使用全局路由守卫进行用户鉴权
